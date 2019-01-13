@@ -1,33 +1,38 @@
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
 
-window.Vue = require('vue');
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Vuex from 'vuex'
+import AdminMenu from './components/menu/AdminMenu'
+import User from './components/admin/User'
+import VeeValidate from 'vee-validate';
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+import Modal from './components/Modal'
+import err404 from './components/err404'
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+import { routes } from './routes'
+import { stores } from './stores'
+
+Vue.use(VueRouter)
+Vue.use(Vuex)
+Vue.use(VeeValidate)
+
+const router = new VueRouter({
+    mode: 'history',
+    routes
+})
+
+const store = new Vuex.Store(stores);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
+Vue.component('admin-menu', AdminMenu);
+Vue.component('user', User);
+Vue.component('modal', Modal);
+Vue.component('err404', err404);
+window.eventBus = new Vue();
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router,
+    store
 });
