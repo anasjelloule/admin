@@ -18,4 +18,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/isuser', 'HomeController@isadmin')->name('user_admin');
 Route::get('/{path}', 'HomeController@index')->where('path', '.*');

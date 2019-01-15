@@ -137,9 +137,9 @@
                 <td>{{user.bio}}</td>
                 <td>{{user.role}}</td>
                 <td>
-                  <a href="#">
+                  <router-link :to="{name:'edituser',params:{id:user.id}}">
                     <i class="fa fa-edit"/>
-                  </a>
+                  </router-link>
                   <a href="#">
                     <i class="fa fa-trash text-danger"/>
                   </a>
