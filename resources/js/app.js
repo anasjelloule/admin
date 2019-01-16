@@ -5,17 +5,23 @@ import VueRouter from "vue-router";
 import Vuex from "vuex";
 import AdminMenu from "./components/menu/AdminMenu";
 // import User from "./components/admin/User";
-import VeeValidate from "vee-validate";
+// import VeeValidate from "vee-validate";
+import { Form, HasError, AlertError } from "vform";
 
 import Modal from "./components/Modal";
 import err404 from "./components/err404";
 
 import { routes } from "./routes";
 import { stores } from "./stores";
+window.Swal = require("sweetalert2");
+
+window.Form = Form;
+Vue.component(HasError.name, HasError);
+Vue.component(AlertError.name, AlertError);
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
-Vue.use(VeeValidate);
+// Vue.use(VeeValidate);
 
 const router = new VueRouter({
     mode: "history",

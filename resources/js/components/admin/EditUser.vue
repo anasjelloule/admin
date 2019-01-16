@@ -36,10 +36,10 @@
 <script>
 export default {
   name: "edit-user",
-
+  props: ["id"],
   computed: {
     user() {
-      return this.$store.getters.users.find(user => user.id == 1);
+      return this.$store.getters.users.find(user => user.id == this.id);
     }
   },
   created() {
